@@ -18,6 +18,7 @@ class TeamsController < ApplicationController
       flash[:notice] = "Team has been created."
       redirect_to @team
     else
+      flash[:notice] = "Team has not been created."
       render "new"
     end
   end
@@ -30,6 +31,7 @@ class TeamsController < ApplicationController
       flash[:notice] = "Team has been updated."
       redirect_to @team
     else
+      flash[:notice] = "Team has not been updated."
       render "edit"
     end
   end
