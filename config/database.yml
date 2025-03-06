@@ -14,16 +14,25 @@
 # Configure Using Gemfile
 # gem "pg"
 #
+#default: &default
+#  adapter: postgresql
+#  encoding: unicode
+# For details on connection pooling, see Rails configuration guide
+# https://guides.rubyonrails.org/configuring.html#database-pooling
+#  pool: <%#= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
 default: &default
-  adapter: postgresql
-  encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
 
 development:
   <<: *default
-  database: view_component_rspec_development
+  database: storage/development1.sqlite3
+
+  #development:
+  #  <<: *default
+  #  database: view_component_rspec_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -55,9 +64,14 @@ development:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
+
 test:
   <<: *default
-  database: view_component_rspec_test
+  database: storage/test1.sqlite3
+
+#test:
+#  <<: *default
+#  database: view_component_rspec_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -81,6 +95,6 @@ test:
 #
 production:
   <<: *default
-  database: view_component_rspec_production
-  username: view_component_rspec
-  password: <%= ENV["VIEW_COMPONENT_RSPEC_DATABASE_PASSWORD"] %>
+#  database: view_component_rspec_production
+#  username: view_component_rspec
+#  password: <%#= ENV["VIEW_COMPONENT_RSPEC_DATABASE_PASSWORD"] %>
