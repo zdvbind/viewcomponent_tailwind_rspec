@@ -3,13 +3,12 @@
 require "rails_helper"
 
 RSpec.describe BackNavigationComponent, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "renders a back navigation link" do
+    test_url = "https://example.com"
+    test_text = "teams"
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+    render_inline(described_class.new(href: test_url, text: test_text))
+
+    expect(rendered_content).to have_link "Back to #{test_text}", href: test_url
+  end
 end

@@ -3,13 +3,12 @@
 require "rails_helper"
 
 RSpec.describe EditLinkComponent, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "renders an edit link" do
+    test_url = "https://example.com"
+    test_text = "player details"
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+    render_inline(described_class.new(href: test_url, text: test_text))
+
+    expect(rendered_content).to have_link "Edit #{test_text}", href: test_url
+  end
 end
